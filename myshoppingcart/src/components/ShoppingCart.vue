@@ -19,9 +19,12 @@
                 <td>{{item.price}}</td>
                 <td>{{item.count}}</td>
                 <td>
-                    <button @click="handleReduce(index)" :disabled="item.count===0">-</button>
-                    <button @click="handleAdd(index)" >+</button>
-                    <button @click="handleRemove(index)" >移除</button>
+                    <!-- <button type="primary"  @click="handleReduce(index)" :disabled="item.count===0">-</button>
+                    <button type="primary"  @click="handleAdd(index)" >+</button>
+                    <button type="primary"  @click="handleRemove(index)">移除</button>                     -->
+                    <el-button type="primary"  @click="handleReduce(index)" :disabled="item.count===0">-</el-button>
+                    <el-button type="primary"  @click="handleAdd(index)" >+</el-button>
+                    <el-button type="primary"  @click="handleRemove(index)">移除</el-button>
                 </td>
                 <!-- <td><img src="../assets/favicon.ico" /></td> -->
             </tr>
@@ -30,12 +33,32 @@
 </div>    
 </template>
 <script >
-
+import { Button as ElButton} from 'element-ui';
 export default({
     name:'shoppingchart',
+    components:{ElButton},
     props:{
         msg:{type:String,default:function(){return null}},
-        datalist:Array,
+        datalist:{type:Array,default:function(){return [
+                {
+                    id:1,
+                    name:'iphone',
+                    price: 61881,
+                    count:1
+                },
+                {
+                    id:2,
+                    name:'pro ',
+                    price: 3188,
+                    count:1
+                },
+                {
+                    id:3,
+                    name:'iwatch',
+                    price: 4188,
+                    count:1
+                }                        
+            ] }},
         additem:{type:Function,default:function(){return function(){window.console.log('a empty prop of function type')}}}
     },
     data:function(){
@@ -63,6 +86,12 @@ export default({
 })
 </script>
 <style scoped>
+    .el-button{
+        font-weight: 500;
+        padding: 3px 4px;
+        font-size: 12px;
+        border-radius: 1px;
+    }
     table{
     border : lpx solid #e9e9e9 ;
     border-collapse: collapse ;
